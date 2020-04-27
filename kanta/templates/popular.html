@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Suosituimmat hakukriteerit</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    {%  include 'navbar.html' %}
+	<div class="container-fluid">
+	{% block content %}
+	{% endblock %}
+    </div>
+
+<div class="container">
+    <p></p>
+
+    <h1>Suosituimmat hakukriteerit</h1>
+
+        {% csrf_token %}
+
+        Vuodet: <br/>
+            {% if vuodet.0 == 'E' %}
+                    {{vuodet}} <br/><br/>
+
+            {% else %}
+                {% for vuosi in vuodet %}
+                        {% if vuosi.1 == 1 %}
+                            {{ vuosi.0 }} : {{ vuosi.1 }} hakukerta
+                        {% else %}
+                            {{ vuosi.0 }} : {{ vuosi.1 }} hakukertaa
+                        {% endif %}
+                    <br/>
+                {% endfor %}<br/>
+            {% endif %}
+
+
+        Kuukaudet: <br/>
+            {% if kuukaudet.0 == 'E' %}
+                    {{kuukaudet}} <br/><br/>
+
+            {% else %}
+            {% for kuukausi in kuukaudet %}
+                    {% if kuukausi.1 == 1 %}
+                        {{ kuukausi.0 }} : {{ kuukausi.1 }} hakukerta
+                    {% else %}
+                        {{ kuukausi.0 }} : {{ kuukausi.1 }} hakukertaa
+                    {% endif %}
+                    <br/>
+                {% endfor %} <br/>
+            {% endif %}
+
+        Kunnat: <br/>
+            {% if kunnat.0 == 'E' %}
+                    {{kunnat}} <br/><br/>
+
+            {% else %}
+            {% for kunta in kunnat %}
+                    {% if kunta.1 == 1 %}
+                        {{ kunta.0 }} : {{ kunta.1 }} hakukerta
+                    {% else %}
+                        {{ kunta.0 }} : {{ kunta.1 }} hakukertaa
+                    {% endif %}
+                    <br/>
+                {% endfor %}
+            {% endif %}<br/>
+
+         Hakusivun kävijämäärä: {{ hakuvieraat }}<br/>
+
+        {% if haut == 0 %}
+            Kokonaishaut: 0
+        {% else %}
+            Hakujen määrä yhteenä: {{ haut }}
+        {% endif %}
+
+
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
